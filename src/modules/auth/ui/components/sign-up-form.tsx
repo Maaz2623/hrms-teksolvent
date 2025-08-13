@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import Image from "next/image";
+import Link from "next/link";
 
 export function SignUpForm({
   className,
@@ -119,21 +121,22 @@ export function SignUpForm({
                 {/* Link to Login */}
                 <div className="text-center text-sm text-muted-foreground">
                   Already have an account?{" "}
-                  <a
+                  <Link
                     href="/auth/sign-in"
                     className="text-primary hover:underline underline-offset-4"
                   >
                     Log in
-                  </a>
+                  </Link>
                 </div>
               </div>
             </form>
 
             {/* Image section */}
             <div className="bg-muted relative hidden md:block">
-              <img
+              <Image
                 src="https://picsum.photos/600/800"
                 alt="Placeholder"
+                fill
                 className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
               />
             </div>
@@ -143,7 +146,7 @@ export function SignUpForm({
         {/* Terms */}
         <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
           By clicking continue, you agree to our{" "}
-          <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+          <Link href="#">Terms of Service</Link> and <Link href="#">Privacy Policy</Link>.
         </div>
       </div>
     </div>
