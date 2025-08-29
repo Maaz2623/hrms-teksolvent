@@ -1,7 +1,8 @@
+import AdminDashboardView from "@/modules/admin-dashboard/ui/View/AdminDashboardView";
 import React from "react";
 
 const DashboardPage = () => {
-  return <div>DashboardPage</div>;
+  return <AdminDashboardView/>;
 };
 
 export default DashboardPage;
