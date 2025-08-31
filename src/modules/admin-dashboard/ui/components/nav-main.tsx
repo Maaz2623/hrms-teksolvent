@@ -17,36 +17,40 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 type NavItem = {
   label: string;
-  href: string;
+  path: string; // relative path after /organization/[organizationId]
   icon: LucideIcon;
 };
 
 const navItems: NavItem[] = [
-  { label: "Dashboard", href: "/dashboard", icon: HomeIcon },
-  { label: "Employees", href: "/employees", icon: UsersIcon },
-  { label: "Departments", href: "/departments", icon: BuildingIcon },
-  { label: "Leave Management", href: "/leave-management", icon: CalendarIcon },
-  { label: "Attendance", href: "/attendance", icon: UserCheckIcon },
+  { label: "Dashboard", path: "", icon: HomeIcon },
+  { label: "Employees", path: "employees", icon: UsersIcon },
+  { label: "Departments", path: "departments", icon: BuildingIcon },
+  { label: "Leave Management", path: "leave-management", icon: CalendarIcon },
+  { label: "Attendance", path: "attendance", icon: UserCheckIcon },
 ];
 
 export function NavMain() {
   const pathname = usePathname();
+  const { organizationId } = useParams<{ organizationId: string }>();
 
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
         {navItems.map((item) => {
-          const isActive = pathname === item.href;
+          const href = `/organization/${organizationId}${
+            item.path ? `/${item.path}` : ""
+          }`;
+          const isActive = pathname === href;
 
           return (
-            <SidebarMenuItem key={item.href}>
+            <SidebarMenuItem key={href}>
               <SidebarMenuButton
                 asChild
                 className={cn(
@@ -56,7 +60,7 @@ export function NavMain() {
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
-                <Link href={item.href}>
+                <Link href={href}>
                   <item.icon className="w-4 h-4" />
                   <span>{item.label}</span>
                 </Link>
