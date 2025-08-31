@@ -1,5 +1,12 @@
-import { sql } from "drizzle-orm";
-import { pgTable, text, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
+import { InferSelectModel, sql } from "drizzle-orm";
+import {
+  date,
+  pgTable,
+  text,
+  timestamp,
+  uuid,
+  varchar,
+} from "drizzle-orm/pg-core";
 
 export const companies = pgTable("companies", {
   id: uuid("id").defaultRandom().primaryKey().notNull(),
@@ -27,3 +34,42 @@ export const companies = pgTable("companies", {
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
 });
+
+export const employees = pgTable("employees", {
+  id: uuid("id").defaultRandom().primaryKey().notNull(),
+
+  companyId: uuid("company_id")
+    .notNull()
+    .references(() => companies.id, { onDelete: "cascade" }),
+
+  firstName: varchar("first_name", { length: 100 }).notNull(),
+  lastName: varchar("last_name", { length: 100 }).notNull(),
+  email: text("email").notNull().unique(),
+  phone: varchar("phone", { length: 15 }),
+
+  department: varchar("department", { length: 100 }),
+  designation: varchar("designation", { length: 100 }),
+
+  employeeCode: varchar("employee_code", { length: 50 }).unique(), // internal employee ID
+  employmentType: varchar("employment_type", { length: 50 }), // e.g. full-time, part-time, intern, contractor
+
+  dateOfJoining: timestamp("date_of_joining", {
+    withTimezone: true, // optional, depending on if you care about timezone
+    mode: "date",
+  }).notNull(),
+
+  dateOfExit: timestamp("date_of_exit", {
+    withTimezone: true,
+    mode: "date",
+  }),
+  status: varchar("status", { length: 20 }).default("active"), // active, resigned, terminated, etc.
+
+  createdAt: timestamp("created_at")
+    .$defaultFn(() => /* @__PURE__ */ new Date())
+    .notNull(),
+  updatedAt: timestamp("updated_at").$defaultFn(
+    () => /* @__PURE__ */ new Date()
+  ),
+});
+
+export type Employee = InferSelectModel<typeof employees>;
