@@ -14,7 +14,6 @@ import { DataTable } from "../components/employee-table/data-table";
 import { useTRPC } from "@/trpc/client";
 import { useQuery } from "@tanstack/react-query";
 import { columns } from "../components/employee-table/columns";
-import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { AddEmployeeSheet } from "../components/add-employee-sheet";
 

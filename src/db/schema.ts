@@ -1,6 +1,5 @@
 import { InferSelectModel, sql } from "drizzle-orm";
 import {
-  date,
   pgTable,
   text,
   timestamp,

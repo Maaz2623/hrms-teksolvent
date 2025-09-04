@@ -3,7 +3,7 @@ import React from 'react'
 
 type StatCardProp = {
     title: string;
-    data: number;
+    data: number | string;
     Icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>
 };
 
