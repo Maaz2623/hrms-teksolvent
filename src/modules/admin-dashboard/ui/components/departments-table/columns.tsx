@@ -38,7 +38,7 @@ export const columns: ColumnDef<Department>[] = [
             return (
                 <div className="flex items-center gap-3 min-w-[180px] max-w-[220px]">
                     {/* Avatar Circle */}
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white font-bold shrink-0">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-accent-foreground border font-bold shrink-0">
                         <Building />
                     </div>
                     <div className="overflow-hidden">

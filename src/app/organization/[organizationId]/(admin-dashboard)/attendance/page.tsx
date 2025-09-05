@@ -1,7 +1,8 @@
+import AttendanceManagementView from "@/modules/admin-dashboard/ui/View/attendance-management-view";
 import React from "react";
 
 const AttendancePage = () => {
-  return <div>Attendance Page</div>;
+  return <AttendanceManagementView />;
 };
 
 export default AttendancePage;
