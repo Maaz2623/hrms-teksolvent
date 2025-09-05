@@ -1,7 +1,8 @@
+import LeaveManagementView from "@/modules/admin-dashboard/ui/View/leave-management-view";
 import React from "react";
 
 const LeaveManagementPage = () => {
-  return <div>Leave Management page</div>;
+  return <LeaveManagementView />;
 };
 
 export default LeaveManagementPage;
