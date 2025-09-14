@@ -8,8 +8,6 @@ export default async function AdminDashboardLayout({
   children: React.ReactNode;
 }) {
 
-  
-
   return (
     <SidebarProvider>
       <AdminDashboardSidebar />
